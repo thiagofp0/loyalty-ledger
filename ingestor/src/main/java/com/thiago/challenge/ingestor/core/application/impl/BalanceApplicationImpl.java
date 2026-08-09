@@ -1,12 +1,14 @@
 package com.thiago.challenge.ingestor.core.application.impl;
 
-import com.thiago.challenge.ingestor.core.application.BalanceApplication;
-import com.thiago.challenge.ingestor.core.domain.model.BalanceMessage;
+import org.springframework.stereotype.Service;
 
+import com.thiago.challenge.ingestor.core.application.BalanceApplication;
+import com.thiago.challenge.ingestor.core.domain.entities.BalanceState;
+
+@Service
 public class BalanceApplicationImpl implements BalanceApplication {
     @Override
-    public void processBalanceMessage(BalanceMessage message) {
-        System.out.println("Processing balance message: " + message);
+    public void processBalanceMessage(BalanceState message) {
+        System.out.println("Processing balance message: " + message.getAccountId());
     }
-    
 }
