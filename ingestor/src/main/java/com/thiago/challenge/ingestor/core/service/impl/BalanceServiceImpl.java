@@ -1,21 +1,21 @@
-package com.thiago.challenge.ingestor.core.application.impl;
+package com.thiago.challenge.ingestor.core.service.impl;
 
 import org.springframework.stereotype.Service;
 
-import com.thiago.challenge.ingestor.core.application.BalanceApplication;
 import com.thiago.challenge.ingestor.core.domain.entities.BalanceState;
+import com.thiago.challenge.ingestor.core.repository.BalanceRepository;
 import com.thiago.challenge.ingestor.core.service.BalanceService;
 
 import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-public class BalanceApplicationImpl implements BalanceApplication {
+public class BalanceServiceImpl implements BalanceService{
 
-    private final BalanceService balanceService;
+    private final BalanceRepository balanceRepository;
 
     @Override
     public void processBalanceState(BalanceState message) {
-        balanceService.processBalanceState(message);
-    }
+        balanceRepository.createBalanceStateRegistry(message);
+    } 
 }

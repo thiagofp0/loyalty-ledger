@@ -18,6 +18,12 @@ public class MessageHandlerImpl implements MessageHandler {
 
     @RabbitListener(queues = "BALANCE-QUEUE")
     public void handleMessage(BalanceMessage message) {
-        balanceApplication.processBalanceMessage(BalanceMapper.toBalanceState(message));
+        try{
+            balanceApplication.processBalanceState(BalanceMapper.toBalanceState(message));
+        }catch (IllegalArgumentException e) {
+            System.err.println("Error processing message: " + e.getMessage());
+        }catch (Exception e) {
+            System.err.println("Unexpected error processing message: " + e.getMessage());
+        }
     }
 }
